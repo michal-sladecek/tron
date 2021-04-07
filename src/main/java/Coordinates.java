@@ -9,6 +9,11 @@ public class Coordinates {
         this.y = y;
     }
 
+    public Coordinates(Coordinates c) {
+        this.x = c.x;
+        this.y = c.y;
+    }
+
     public int getX() {
         return x;
     }
@@ -30,16 +35,9 @@ public class Coordinates {
         this.y += dy;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Coordinates that = (Coordinates) o;
-        return x == that.x && y == that.y;
+    public boolean equals(Coordinates c) {
+        return c.x == this.x && c.y == this.y;
     }
 
- 
- 
- 
- 
+
 }

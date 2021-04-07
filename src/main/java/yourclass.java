@@ -23,9 +23,9 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 		DOWN,
 		LEFT
 	}
-	Direction directionOfPlayer1;
-	Direction directionOfPlayer2;
-	
+	Direction directionOfPlayer1 = Direction.RIGHT;
+	Direction directionOfPlayer2 = Direction.LEFT;
+
 	int currentDirection1 = 1;
 	int currentDirection2 = 3;
 	int moveAmount = 5;
@@ -67,8 +67,8 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 	}
 
 	private void movePlayers() {
-		movePlayer(currentDirection1,locationOfPlayer1);
-		movePlayer(currentDirection2, locationOfPlayer2);
+		movePlayer(directionOfPlayer1,locationOfPlayer1);
+		movePlayer(directionOfPlayer2, locationOfPlayer2);
 	}
 
 	private void checkForCollisions() {
@@ -92,30 +92,30 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 		}
 	}
 
-	private void movePlayer(int direction, Coordinates location) {
+	private void movePlayer(Direction direction, Coordinates location) {
 		switch(direction){
-		case 0:
+		case UP:
 			if (location.getY()>0){
 				location.move(0,-moveAmount);
 			} else {
 				location.setY(sm.getHeight());
 			}
 			break;
-		case 1:
+		case RIGHT:
 			if (location.getX() < sm.getWidth()){
 				location.move(moveAmount,0);
 			} else {
 				location.setX(0);
 			}
 			break;
-		case 2:
+		case DOWN:
 			if (location.getY() < sm.getHeight()){
 				location.move(0,moveAmount);
 			} else {
 				location.setY(0);
 			}
 			break;
-		case 3:
+		case LEFT:
 			if (location.getX()>0){
 				location.move(-moveAmount,0);
 			} else {
@@ -127,38 +127,39 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			if (currentDirection1 != 2){
-			currentDirection1 = 0;
+			if (directionOfPlayer1 != Direction.DOWN){
+				directionOfPlayer1 = Direction.UP;
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			if (currentDirection1 != 0){
-				currentDirection1 = 2;
+			if (directionOfPlayer1 != Direction.UP){
+				directionOfPlayer1 = Direction.DOWN;
 				}
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			if (currentDirection1 != 3){
-				currentDirection1 = 1;
+			if (directionOfPlayer1 != Direction.LEFT){
+				directionOfPlayer1 = Direction.RIGHT;
 				}
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			if (currentDirection1 != 1){
-				currentDirection1 = 3;
+			if (directionOfPlayer1 != Direction.RIGHT){
+				directionOfPlayer1 = Direction.LEFT;
 				}
 		}
-		if (e.getKeyCode() == KeyEvent.VK_W){
-			if (currentDirection2 != 2){
-			currentDirection2 = 0;
+
+		if (e.getKeyCode() == KeyEvent.VK_W) {
+			if (directionOfPlayer2 != Direction.DOWN){
+				directionOfPlayer2 = Direction.UP;
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
-			if (currentDirection2 != 0){
-				currentDirection2 = 2;
-				}
+			if (directionOfPlayer2 != Direction.UP){
+				directionOfPlayer2 = Direction.DOWN;
+			}
 		} else if (e.getKeyCode() == KeyEvent.VK_D) {
-			if (currentDirection2 != 3){
-				currentDirection2 = 1;
-				}
+			if (directionOfPlayer2 != Direction.LEFT){
+				directionOfPlayer2 = Direction.RIGHT;
+			}
 		} else if (e.getKeyCode() == KeyEvent.VK_A) {
-			if (currentDirection2 != 1){
-				currentDirection2 = 3;
-				}
+			if (directionOfPlayer2 != Direction.RIGHT){
+				directionOfPlayer2 = Direction.LEFT;
+			}
 		}
 	}
 

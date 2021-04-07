@@ -13,9 +13,8 @@ import java.util.ArrayList;
 public class yourclass extends Core implements KeyListener, MouseListener,
 		MouseMotionListener {
 	Coordinates locationOfPlayer1 = new Coordinates(40,40);
+	Coordinates locationOfPlayer2 = new Coordinates(600,440);
 
-	int centrex2 = 600;
-	int centrey2 = 440;
 	int currentDirection1 = 1;
 	int currentDirection2 = 3;
 	int moveAmount = 5;
@@ -39,45 +38,17 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 
 	public void draw(Graphics2D g) {
 		movePlayer(currentDirection1,locationOfPlayer1);
-		switch(currentDirection2){
-		case 0:
-			if (centrey2>0){
-			centrey2-=moveAmount;
-			} else {
-				centrey2 = sm.getHeight();
-			}
-			break;
-		case 1:
-			if (centrex2 < sm.getWidth()){
-			centrex2+=moveAmount;
-			} else {
-				centrex2 = 0;
-			}
-			break;
-		case 2:
-			if (centrey2 < sm.getHeight()){
-			centrey2+=moveAmount;
-			} else {
-				centrey2 = 0;
-			}
-			break;
-		case 3:
-			if (centrex2>0){
-			centrex2-=moveAmount;
-			} else {
-				centrex2 = sm.getWidth();
-			}
-			break;
-		}
+		movePlayer(currentDirection2, locationOfPlayer2);
+		
 	    for (int x = 0;x<pathx1.size();x++){
-	    	if (((locationOfPlayer1.getX() == pathx1.get(x)) && (locationOfPlayer1.getY() == pathy1.get(x))) || ((centrex2 == pathx2.get(x)) && (centrey2 == pathy2.get(x))) || ((locationOfPlayer1.getX() == pathx2.get(x)) && (locationOfPlayer1.getY() == pathy2.get(x))) || ((centrex2 == pathx1.get(x)) && (centrey2 == pathy1.get(x)))){
+	    	if (((locationOfPlayer1.getX() == pathx1.get(x)) && (locationOfPlayer1.getY() == pathy1.get(x))) || ((locationOfPlayer2.getX() == pathx2.get(x)) && (locationOfPlayer2.getY() == pathy2.get(x))) || ((locationOfPlayer1.getX() == pathx2.get(x)) && (locationOfPlayer1.getY() == pathy2.get(x))) || ((locationOfPlayer2.getX() == pathx1.get(x)) && (locationOfPlayer2.getY() == pathy1.get(x)))){
 	    		System.exit(0);
 	    	}
 	    }
 		pathx1.add(locationOfPlayer1.getX());
 		pathy1.add(locationOfPlayer1.getY());
-		pathx2.add(centrex2);
-		pathy2.add(centrey2);
+		pathx2.add(locationOfPlayer2.getX());
+		pathy2.add(locationOfPlayer2.getY());
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, sm.getWidth(), sm.getHeight());
 		for (int x = 0;x<pathx1.size();x++){

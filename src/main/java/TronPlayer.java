@@ -1,13 +1,16 @@
+import java.awt.*;
 import java.util.ArrayList;
 
 public class TronPlayer {
     Coordinates location;
     Direction direction;
     ArrayList<Coordinates> path = new ArrayList<Coordinates>();
+    Color color;
 
-    public TronPlayer(Coordinates location, Direction direction) {
+    public TronPlayer(Coordinates location, Direction direction, Color color) {
         this.location = location;
         this.direction = direction;
+        this.color = color;
     }
 
     public void movePlayer(int moveAmount, int gameWidth, int gameHeight) {

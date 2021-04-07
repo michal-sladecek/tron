@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.lang.management.PlatformLoggingMXBean;
 import java.util.ArrayList;
 
 public class yourclass extends Core implements  MouseListener,
@@ -23,8 +24,8 @@ public class yourclass extends Core implements  MouseListener,
 
 		Window w = sm.getFullScreenWindow();
 
-		tronPlayer1 = new TronPlayer(new Coordinates(40,40), TronPlayer.Direction.RIGHT);
-		tronPlayer2 = new TronPlayer(new Coordinates(600,440), TronPlayer.Direction.LEFT);
+		tronPlayer1 = new TronPlayer(new Coordinates(40,40), TronPlayer.Direction.RIGHT, Color.green);
+		tronPlayer2 = new TronPlayer(new Coordinates(600,440), TronPlayer.Direction.LEFT, Color.red);
 
 		control1 = new TronPlayerControl(tronPlayer1,KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT);
 		control2 = new TronPlayerControl(tronPlayer2,KeyEvent.VK_W,KeyEvent.VK_S,KeyEvent.VK_D,KeyEvent.VK_A);
@@ -51,8 +52,8 @@ public class yourclass extends Core implements  MouseListener,
 	private void drawGameState(Graphics2D g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, sm.getWidth(), sm.getHeight());
-		drawPlayerPath(g, tronPlayer1.path, Color.green);
-		drawPlayerPath(g, tronPlayer2.path, Color.red);
+		drawPlayerPath(g, tronPlayer1.path, tronPlayer1.color);
+		drawPlayerPath(g, tronPlayer2.path, tronPlayer2.color);
 	}
 
 	private void updateGameState() {

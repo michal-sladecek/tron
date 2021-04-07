@@ -11,11 +11,8 @@ import java.util.ArrayList;
 public class yourclass extends Core implements  MouseListener,
 		MouseMotionListener {
 
-	TronPlayer tronPlayer1;
-	TronPlayer tronPlayer2;
-
-	TronPlayerControl control1;
-	TronPlayerControl control2;
+	ArrayList<TronPlayer> players = new ArrayList<>();
+	ArrayList<TronPlayerControl> controls  = new ArrayList<>();
 
 	int moveAmount = 5;
 
@@ -24,20 +21,18 @@ public class yourclass extends Core implements  MouseListener,
 
 		Window w = sm.getFullScreenWindow();
 
-		tronPlayer1 = new TronPlayer(new Coordinates(40,40), TronPlayer.Direction.RIGHT, Color.green);
-		tronPlayer2 = new TronPlayer(new Coordinates(600,440), TronPlayer.Direction.LEFT, Color.red);
+		players.add(new TronPlayer(new Coordinates(40,40), TronPlayer.Direction.RIGHT, Color.green));
+		players.add(new TronPlayer(new Coordinates(600,440), TronPlayer.Direction.LEFT, Color.red));
 
-		control1 = new TronPlayerControl(tronPlayer1,KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT);
-		control2 = new TronPlayerControl(tronPlayer2,KeyEvent.VK_W,KeyEvent.VK_S,KeyEvent.VK_D,KeyEvent.VK_A);
+		controls.add(new TronPlayerControl(players.get(0),KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT));
+		controls.add(new TronPlayerControl(players.get(1),KeyEvent.VK_W,KeyEvent.VK_S,KeyEvent.VK_D,KeyEvent.VK_A));
 
-		w.addKeyListener(control1);
-		w.addKeyListener(control2);
-
+		for (TronPlayerControl x: controls) {
+			w.addKeyListener(x);
+		}
 
 		w.addMouseListener(this);
 		w.addMouseMotionListener(this);
-
-
 	}
 
 	public static void main(String[] args) {
@@ -52,8 +47,9 @@ public class yourclass extends Core implements  MouseListener,
 	private void drawGameState(Graphics2D g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, sm.getWidth(), sm.getHeight());
-		drawPlayerPath(g, tronPlayer1.path, tronPlayer1.color);
-		drawPlayerPath(g, tronPlayer2.path, tronPlayer2.color);
+		for (TronPlayer player: players) {
+			drawPlayerPath(g,player.path,player.color);
+		}
 	}
 
 	private void updateGameState() {
@@ -63,21 +59,24 @@ public class yourclass extends Core implements  MouseListener,
 	}
 
 	private void updatePlayerPaths() {
-		tronPlayer1.updatePath();
-		tronPlayer2.updatePath();
+		for (TronPlayer player: players) {
+			player.updatePath();
+		}
 	}
 
 	private void movePlayers() {
-		tronPlayer1.movePlayer(moveAmount,sm.getWidth(),sm.getHeight());
-		tronPlayer2.movePlayer(moveAmount,sm.getWidth(),sm.getHeight());
+		for (TronPlayer player: players) {
+			player.movePlayer(moveAmount,sm.getWidth(), sm.getHeight());
+		}
 	}
 
 	private void checkForCollisions() {
-		if(		tronPlayer1.checkCollision(tronPlayer1) ||
-				tronPlayer1.checkCollision(tronPlayer2) ||
-				tronPlayer2.checkCollision(tronPlayer1) ||
-				tronPlayer2.checkCollision(tronPlayer2)){
-			System.exit(0);
+		for (TronPlayer player1: players) {
+			for (TronPlayer player2: players) {
+				if(player1.checkCollision(player2)){
+					System.exit(0);
+				}
+			}
 		}
 	}
 

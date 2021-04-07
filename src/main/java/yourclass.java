@@ -54,13 +54,14 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 	    pathOfPlayer2.add(new Coordinates(locationOfPlayer2));
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, sm.getWidth(), sm.getHeight());
-		for (int x = 0;x<pathOfPlayer1.size();x++) {
-			g.setColor(Color.green);
-			g.fillRect(pathOfPlayer1.get(x).getX(), pathOfPlayer1.get(x).getY(), 10, 10);
-		}
-		for (int x = 0;x<pathOfPlayer2.size();x++) {
-			g.setColor(Color.red);
-			g.fillRect(pathOfPlayer2.get(x).getX(), pathOfPlayer2.get(x).getY(), 10, 10);
+		drawPlayerPath(g, pathOfPlayer1, Color.green);
+		drawPlayerPath(g, pathOfPlayer2, Color.red);
+	}
+
+	private void drawPlayerPath(Graphics2D g, ArrayList<Coordinates> playerPath, Color color) {
+		for (int x = 0; x < playerPath.size(); x++) {
+			g.setColor(color);
+			g.fillRect(playerPath.get(x).getX(), playerPath.get(x).getY(), 10, 10);
 		}
 	}
 

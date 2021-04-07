@@ -17,6 +17,15 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 	ArrayList<Coordinates> pathOfPlayer1 = new ArrayList<Coordinates>();
 	ArrayList<Coordinates> pathOfPlayer2 = new ArrayList<Coordinates>();
 
+	enum Direction{
+		UP,
+		RIGHT,
+		DOWN,
+		LEFT
+	}
+	Direction directionOfPlayer1;
+	Direction directionOfPlayer2;
+	
 	int currentDirection1 = 1;
 	int currentDirection2 = 3;
 	int moveAmount = 5;
@@ -49,7 +58,6 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 	private void updateGameState() {
 		movePlayers();
 		checkForCollisions();
-
 		updatePlayerPaths();
 	}
 

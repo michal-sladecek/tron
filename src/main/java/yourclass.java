@@ -16,13 +16,23 @@ public class yourclass extends Core implements  MouseListener,
 
 	int moveAmount = 5;
 
+
+
 	public void init() {
 		super.init();
 
 		Window w = sm.getFullScreenWindow();
 
+		setupPlayers(w);
+
+		w.addMouseListener(this);
+		w.addMouseMotionListener(this);
+	}
+
+	private void setupPlayers(Window w) {
 		players.add(new TronPlayer(new Coordinates(40,40), TronPlayer.Direction.RIGHT, Color.green));
 		players.add(new TronPlayer(new Coordinates(600,440), TronPlayer.Direction.LEFT, Color.red));
+		players.add(new TronPlayer(new Coordinates(900,500), TronPlayer.Direction.UP, Color.yellow));
 
 		controls.add(new TronPlayerControl(players.get(0),KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT));
 		controls.add(new TronPlayerControl(players.get(1),KeyEvent.VK_W,KeyEvent.VK_S,KeyEvent.VK_D,KeyEvent.VK_A));
@@ -30,9 +40,6 @@ public class yourclass extends Core implements  MouseListener,
 		for (TronPlayerControl x: controls) {
 			w.addKeyListener(x);
 		}
-
-		w.addMouseListener(this);
-		w.addMouseMotionListener(this);
 	}
 
 	public static void main(String[] args) {

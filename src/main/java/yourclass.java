@@ -38,6 +38,17 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 		movePlayer(currentDirection1,locationOfPlayer1);
 		movePlayer(currentDirection2, locationOfPlayer2);
 
+		checkForCollisions();
+
+		pathOfPlayer1.add(new Coordinates(locationOfPlayer1));
+	    pathOfPlayer2.add(new Coordinates(locationOfPlayer2));
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, sm.getWidth(), sm.getHeight());
+		drawPlayerPath(g, pathOfPlayer1, Color.green);
+		drawPlayerPath(g, pathOfPlayer2, Color.red);
+	}
+
+	private void checkForCollisions() {
 		for(int x=0;x<pathOfPlayer1.size();x++){
 			if(locationOfPlayer1.equals(pathOfPlayer1.get(x)) || locationOfPlayer2.equals(pathOfPlayer1.get(x))){
 				System.exit(0);
@@ -49,13 +60,6 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 				System.exit(0);
 			}
 		}
-
-		pathOfPlayer1.add(new Coordinates(locationOfPlayer1));
-	    pathOfPlayer2.add(new Coordinates(locationOfPlayer2));
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, sm.getWidth(), sm.getHeight());
-		drawPlayerPath(g, pathOfPlayer1, Color.green);
-		drawPlayerPath(g, pathOfPlayer2, Color.red);
 	}
 
 	private void drawPlayerPath(Graphics2D g, ArrayList<Coordinates> playerPath, Color color) {

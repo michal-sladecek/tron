@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 public class yourclass extends Core implements KeyListener, MouseListener,
 		MouseMotionListener {
-	int centrex1 = 40;
-	int centrey1 = 40;
+	Coordinates locationOfPlayer1 = new Coordinates(40,40);
+
 	int centrex2 = 600;
 	int centrey2 = 440;
 	int currentDirection1 = 1;
@@ -40,31 +40,31 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 	public void draw(Graphics2D g) {
 		switch(currentDirection1){
 		case 0:
-			if (centrey1>0){
-			centrey1-=moveAmount;
+			if (locationOfPlayer1.getY()>0){
+				locationOfPlayer1.move(0,-moveAmount);
 			} else {
-				centrey1 = sm.getHeight();
+				locationOfPlayer1.setY(sm.getHeight());
 			}
 			break;
 		case 1:
-			if (centrex1 < sm.getWidth()){
-			centrex1+=moveAmount;
+			if (locationOfPlayer1.getX() < sm.getWidth()){
+				locationOfPlayer1.move(moveAmount,0);
 			} else {
-				centrex1 = 0;
+				locationOfPlayer1.setX(0);
 			}
 			break;
 		case 2:
-			if (centrey1 < sm.getHeight()){
-			centrey1+=moveAmount;
+			if (locationOfPlayer1.getY() < sm.getHeight()){
+				locationOfPlayer1.move(0,moveAmount);
 			} else {
-				centrey1 = 0;
+				locationOfPlayer1.setY(0);
 			}
 			break;
 		case 3:
-			if (centrex1>0){
-			centrex1-=moveAmount;
+			if (locationOfPlayer1.getX()>0){
+				locationOfPlayer1.move(-moveAmount,0);
 			} else {
-				centrex1 = sm.getWidth();
+				locationOfPlayer1.setX(sm.getWidth());
 			}
 			break;
 		}
@@ -99,12 +99,12 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 			break;
 		}
 	    for (int x = 0;x<pathx1.size();x++){
-	    	if (((centrex1 == pathx1.get(x)) && (centrey1 == pathy1.get(x))) || ((centrex2 == pathx2.get(x)) && (centrey2 == pathy2.get(x))) || ((centrex1 == pathx2.get(x)) && (centrey1 == pathy2.get(x))) || ((centrex2 == pathx1.get(x)) && (centrey2 == pathy1.get(x)))){
+	    	if (((locationOfPlayer1.getX() == pathx1.get(x)) && (locationOfPlayer1.getY() == pathy1.get(x))) || ((centrex2 == pathx2.get(x)) && (centrey2 == pathy2.get(x))) || ((locationOfPlayer1.getX() == pathx2.get(x)) && (locationOfPlayer1.getY() == pathy2.get(x))) || ((centrex2 == pathx1.get(x)) && (centrey2 == pathy1.get(x)))){
 	    		System.exit(0);
 	    	}
 	    }
-		pathx1.add(centrex1);
-		pathy1.add(centrey1);
+		pathx1.add(locationOfPlayer1.getX());
+		pathy1.add(locationOfPlayer1.getY());
 		pathx2.add(centrex2);
 		pathy2.add(centrey2);
 		g.setColor(Color.BLACK);

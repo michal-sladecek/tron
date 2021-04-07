@@ -38,36 +38,7 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 	}
 
 	public void draw(Graphics2D g) {
-		switch(currentDirection1){
-		case 0:
-			if (locationOfPlayer1.getY()>0){
-				locationOfPlayer1.move(0,-moveAmount);
-			} else {
-				locationOfPlayer1.setY(sm.getHeight());
-			}
-			break;
-		case 1:
-			if (locationOfPlayer1.getX() < sm.getWidth()){
-				locationOfPlayer1.move(moveAmount,0);
-			} else {
-				locationOfPlayer1.setX(0);
-			}
-			break;
-		case 2:
-			if (locationOfPlayer1.getY() < sm.getHeight()){
-				locationOfPlayer1.move(0,moveAmount);
-			} else {
-				locationOfPlayer1.setY(0);
-			}
-			break;
-		case 3:
-			if (locationOfPlayer1.getX()>0){
-				locationOfPlayer1.move(-moveAmount,0);
-			} else {
-				locationOfPlayer1.setX(sm.getWidth());
-			}
-			break;
-		}
+		movePlayer(currentDirection1,locationOfPlayer1);
 		switch(currentDirection2){
 		case 0:
 			if (centrey2>0){
@@ -114,6 +85,39 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 		g.fillRect(pathx1.get(x), pathy1.get(x), 10, 10);
 		g.setColor(Color.red);
 		g.fillRect(pathx2.get(x), pathy2.get(x), 10, 10);
+		}
+	}
+
+	private void movePlayer(int direction, Coordinates location) {
+		switch(direction){
+		case 0:
+			if (location.getY()>0){
+				location.move(0,-moveAmount);
+			} else {
+				location.setY(sm.getHeight());
+			}
+			break;
+		case 1:
+			if (location.getX() < sm.getWidth()){
+				location.move(moveAmount,0);
+			} else {
+				location.setX(0);
+			}
+			break;
+		case 2:
+			if (location.getY() < sm.getHeight()){
+				location.move(0,moveAmount);
+			} else {
+				location.setY(0);
+			}
+			break;
+		case 3:
+			if (location.getX()>0){
+				location.move(-moveAmount,0);
+			} else {
+				location.setX(sm.getWidth());
+			}
+			break;
 		}
 	}
 

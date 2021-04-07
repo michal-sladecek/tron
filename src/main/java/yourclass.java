@@ -14,14 +14,12 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 		MouseMotionListener {
 	Coordinates locationOfPlayer1 = new Coordinates(40,40);
 	Coordinates locationOfPlayer2 = new Coordinates(600,440);
+	ArrayList<Coordinates> pathOfPlayer1 = new ArrayList<Coordinates>();
+	ArrayList<Coordinates> pathOfPlayer2 = new ArrayList<Coordinates>();
 
 	int currentDirection1 = 1;
 	int currentDirection2 = 3;
 	int moveAmount = 5;
-	ArrayList<Integer> pathx1 = new ArrayList();
-	ArrayList<Integer> pathy1 = new ArrayList();
-	ArrayList<Integer> pathx2 = new ArrayList();
-	ArrayList<Integer> pathy2 = new ArrayList();
 
 	public void init() {
 		super.init();
@@ -39,23 +37,30 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 	public void draw(Graphics2D g) {
 		movePlayer(currentDirection1,locationOfPlayer1);
 		movePlayer(currentDirection2, locationOfPlayer2);
-		
-	    for (int x = 0;x<pathx1.size();x++){
-	    	if (((locationOfPlayer1.getX() == pathx1.get(x)) && (locationOfPlayer1.getY() == pathy1.get(x))) || ((locationOfPlayer2.getX() == pathx2.get(x)) && (locationOfPlayer2.getY() == pathy2.get(x))) || ((locationOfPlayer1.getX() == pathx2.get(x)) && (locationOfPlayer1.getY() == pathy2.get(x))) || ((locationOfPlayer2.getX() == pathx1.get(x)) && (locationOfPlayer2.getY() == pathy1.get(x)))){
-	    		System.exit(0);
-	    	}
-	    }
-		pathx1.add(locationOfPlayer1.getX());
-		pathy1.add(locationOfPlayer1.getY());
-		pathx2.add(locationOfPlayer2.getX());
-		pathy2.add(locationOfPlayer2.getY());
+
+		for(int x=0;x<pathOfPlayer1.size();x++){
+			if(locationOfPlayer1.equals(pathOfPlayer1.get(x)) || locationOfPlayer2.equals(pathOfPlayer1.get(x))){
+				System.exit(0);
+			}
+		}
+
+		for(int x=0;x<pathOfPlayer2.size();x++){
+			if(locationOfPlayer1.equals(pathOfPlayer2.get(x)) || locationOfPlayer2.equals(pathOfPlayer2.get(x))){
+				System.exit(0);
+			}
+		}
+
+		pathOfPlayer1.add(new Coordinates(locationOfPlayer1));
+	    pathOfPlayer2.add(new Coordinates(locationOfPlayer2));
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, sm.getWidth(), sm.getHeight());
-		for (int x = 0;x<pathx1.size();x++){
-		g.setColor(Color.green);
-		g.fillRect(pathx1.get(x), pathy1.get(x), 10, 10);
-		g.setColor(Color.red);
-		g.fillRect(pathx2.get(x), pathy2.get(x), 10, 10);
+		for (int x = 0;x<pathOfPlayer1.size();x++) {
+			g.setColor(Color.green);
+			g.fillRect(pathOfPlayer1.get(x).getX(), pathOfPlayer1.get(x).getY(), 10, 10);
+		}
+		for (int x = 0;x<pathOfPlayer2.size();x++) {
+			g.setColor(Color.red);
+			g.fillRect(pathOfPlayer2.get(x).getX(), pathOfPlayer2.get(x).getY(), 10, 10);
 		}
 	}
 

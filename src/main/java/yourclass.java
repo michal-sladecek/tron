@@ -11,15 +11,8 @@ import java.util.ArrayList;
 public class yourclass extends Core implements KeyListener, MouseListener,
 		MouseMotionListener {
 
-	Coordinates locationOfPlayer1 = new Coordinates(40,40);
-	Player.Direction directionOfPlayer1 = Player.Direction.RIGHT;
-	ArrayList<Coordinates> pathOfPlayer1 = new ArrayList<Coordinates>();
-
-
-	Coordinates locationOfPlayer2 = new Coordinates(600,440);
-	ArrayList<Coordinates> pathOfPlayer2 = new ArrayList<Coordinates>();
-	Player.Direction directionOfPlayer2 = Player.Direction.LEFT;
-
+	Player player1 = new Player(new Coordinates(40,40), Player.Direction.RIGHT);
+	Player player2 = new Player(new Coordinates(600,440), Player.Direction.LEFT);
 
 	int moveAmount = 5;
 
@@ -44,8 +37,8 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 	private void drawGameState(Graphics2D g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, sm.getWidth(), sm.getHeight());
-		drawPlayerPath(g, pathOfPlayer1, Color.green);
-		drawPlayerPath(g, pathOfPlayer2, Color.red);
+		drawPlayerPath(g, player1.path, Color.green);
+		drawPlayerPath(g, player2.path, Color.red);
 	}
 
 	private void updateGameState() {
@@ -55,26 +48,21 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 	}
 
 	private void updatePlayerPaths() {
-		pathOfPlayer1.add(new Coordinates(locationOfPlayer1));
-		pathOfPlayer2.add(new Coordinates(locationOfPlayer2));
+		player1.updatePath();
+		player2.updatePath();
 	}
 
 	private void movePlayers() {
-		movePlayer(directionOfPlayer1,locationOfPlayer1);
-		movePlayer(directionOfPlayer2, locationOfPlayer2);
+		player1.movePlayer(moveAmount,sm.getWidth(),sm.getHeight());
+		player2.movePlayer(moveAmount,sm.getWidth(),sm.getHeight());
 	}
 
 	private void checkForCollisions() {
-		for(int x=0;x<pathOfPlayer1.size();x++){
-			if(locationOfPlayer1.equals(pathOfPlayer1.get(x)) || locationOfPlayer2.equals(pathOfPlayer1.get(x))){
-				System.exit(0);
-			}
-		}
-
-		for(int x=0;x<pathOfPlayer2.size();x++){
-			if(locationOfPlayer1.equals(pathOfPlayer2.get(x)) || locationOfPlayer2.equals(pathOfPlayer2.get(x))){
-				System.exit(0);
-			}
+		if(		player1.checkCollision(player1) ||
+				player1.checkCollision(player2) ||
+				player2.checkCollision(player1) ||
+				player2.checkCollision(player2)){
+			System.exit(0);
 		}
 	}
 
@@ -118,41 +106,26 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 		}
 	}
 
+
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			if (directionOfPlayer1 != Player.Direction.DOWN){
-				directionOfPlayer1 = Player.Direction.UP;
-			}
+			player1.setDirectionUP();
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			if (directionOfPlayer1 != Player.Direction.UP){
-				directionOfPlayer1 = Player.Direction.DOWN;
-				}
+			player1.setDirectionDOWN();
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			if (directionOfPlayer1 != Player.Direction.LEFT){
-				directionOfPlayer1 = Player.Direction.RIGHT;
-				}
+			player1.setDirectionRIGHT();
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			if (directionOfPlayer1 != Player.Direction.RIGHT){
-				directionOfPlayer1 = Player.Direction.LEFT;
-				}
+			player1.setDirectionLEFT();
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_W) {
-			if (directionOfPlayer2 != Player.Direction.DOWN){
-				directionOfPlayer2 = Player.Direction.UP;
-			}
+			player2.setDirectionUP();
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
-			if (directionOfPlayer2 != Player.Direction.UP){
-				directionOfPlayer2 = Player.Direction.DOWN;
-			}
+			player2.setDirectionDOWN();
 		} else if (e.getKeyCode() == KeyEvent.VK_D) {
-			if (directionOfPlayer2 != Player.Direction.LEFT){
-				directionOfPlayer2 = Player.Direction.RIGHT;
-			}
+			player2.setDirectionRIGHT();
 		} else if (e.getKeyCode() == KeyEvent.VK_A) {
-			if (directionOfPlayer2 != Player.Direction.RIGHT){
-				directionOfPlayer2 = Player.Direction.LEFT;
-			}
+			player2.setDirectionLEFT();
 		}
 	}
 

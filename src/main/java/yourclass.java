@@ -2,18 +2,19 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Window;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
-public class yourclass extends Core implements KeyListener, MouseListener,
+public class yourclass extends Core implements  MouseListener,
 		MouseMotionListener {
 
-	TronPlayer tronPlayer1 = new TronPlayer(new Coordinates(40,40), TronPlayer.Direction.RIGHT);
-	TronPlayer tronPlayer2 = new TronPlayer(new Coordinates(600,440), TronPlayer.Direction.LEFT);
+	TronPlayer tronPlayer1;
+	TronPlayer tronPlayer2;
 
+	TronPlayerControl control1;
+	TronPlayerControl control2;
 
 	int moveAmount = 5;
 
@@ -21,9 +22,21 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 		super.init();
 
 		Window w = sm.getFullScreenWindow();
-		w.addKeyListener(this);
+
+		tronPlayer1 = new TronPlayer(new Coordinates(40,40), TronPlayer.Direction.RIGHT);
+		tronPlayer2 = new TronPlayer(new Coordinates(600,440), TronPlayer.Direction.LEFT);
+
+		control1 = new TronPlayerControl(tronPlayer1,KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT);
+		control2 = new TronPlayerControl(tronPlayer2,KeyEvent.VK_W,KeyEvent.VK_S,KeyEvent.VK_D,KeyEvent.VK_A);
+
+		w.addKeyListener(control1);
+		w.addKeyListener(control2);
+
+
 		w.addMouseListener(this);
 		w.addMouseMotionListener(this);
+
+
 	}
 
 	public static void main(String[] args) {
@@ -105,37 +118,6 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 			}
 			break;
 		}
-	}
-
-
-	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			tronPlayer1.setDirectionUP();
-		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			tronPlayer1.setDirectionDOWN();
-		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			tronPlayer1.setDirectionRIGHT();
-		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			tronPlayer1.setDirectionLEFT();
-		}
-
-		if (e.getKeyCode() == KeyEvent.VK_W) {
-			tronPlayer2.setDirectionUP();
-		} else if (e.getKeyCode() == KeyEvent.VK_S) {
-			tronPlayer2.setDirectionDOWN();
-		} else if (e.getKeyCode() == KeyEvent.VK_D) {
-			tronPlayer2.setDirectionRIGHT();
-		} else if (e.getKeyCode() == KeyEvent.VK_A) {
-			tronPlayer2.setDirectionLEFT();
-		}
-	}
-
-	public void keyReleased(KeyEvent e) {
-
-	}
-
-	public void keyTyped(KeyEvent arg0) {
-
 	}
 
 	public void mouseClicked(MouseEvent e) {

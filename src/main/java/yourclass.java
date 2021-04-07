@@ -1,7 +1,5 @@
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Stroke;
 import java.awt.Window;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -12,22 +10,17 @@ import java.util.ArrayList;
 
 public class yourclass extends Core implements KeyListener, MouseListener,
 		MouseMotionListener {
+
 	Coordinates locationOfPlayer1 = new Coordinates(40,40);
-	Coordinates locationOfPlayer2 = new Coordinates(600,440);
+	Player.Direction directionOfPlayer1 = Player.Direction.RIGHT;
 	ArrayList<Coordinates> pathOfPlayer1 = new ArrayList<Coordinates>();
+
+
+	Coordinates locationOfPlayer2 = new Coordinates(600,440);
 	ArrayList<Coordinates> pathOfPlayer2 = new ArrayList<Coordinates>();
+	Player.Direction directionOfPlayer2 = Player.Direction.LEFT;
 
-	enum Direction{
-		UP,
-		RIGHT,
-		DOWN,
-		LEFT
-	}
-	Direction directionOfPlayer1 = Direction.RIGHT;
-	Direction directionOfPlayer2 = Direction.LEFT;
 
-	int currentDirection1 = 1;
-	int currentDirection2 = 3;
 	int moveAmount = 5;
 
 	public void init() {
@@ -92,7 +85,7 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 		}
 	}
 
-	private void movePlayer(Direction direction, Coordinates location) {
+	private void movePlayer(Player.Direction direction, Coordinates location) {
 		switch(direction){
 		case UP:
 			if (location.getY()>0){
@@ -127,38 +120,38 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			if (directionOfPlayer1 != Direction.DOWN){
-				directionOfPlayer1 = Direction.UP;
+			if (directionOfPlayer1 != Player.Direction.DOWN){
+				directionOfPlayer1 = Player.Direction.UP;
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			if (directionOfPlayer1 != Direction.UP){
-				directionOfPlayer1 = Direction.DOWN;
+			if (directionOfPlayer1 != Player.Direction.UP){
+				directionOfPlayer1 = Player.Direction.DOWN;
 				}
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			if (directionOfPlayer1 != Direction.LEFT){
-				directionOfPlayer1 = Direction.RIGHT;
+			if (directionOfPlayer1 != Player.Direction.LEFT){
+				directionOfPlayer1 = Player.Direction.RIGHT;
 				}
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			if (directionOfPlayer1 != Direction.RIGHT){
-				directionOfPlayer1 = Direction.LEFT;
+			if (directionOfPlayer1 != Player.Direction.RIGHT){
+				directionOfPlayer1 = Player.Direction.LEFT;
 				}
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_W) {
-			if (directionOfPlayer2 != Direction.DOWN){
-				directionOfPlayer2 = Direction.UP;
+			if (directionOfPlayer2 != Player.Direction.DOWN){
+				directionOfPlayer2 = Player.Direction.UP;
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
-			if (directionOfPlayer2 != Direction.UP){
-				directionOfPlayer2 = Direction.DOWN;
+			if (directionOfPlayer2 != Player.Direction.UP){
+				directionOfPlayer2 = Player.Direction.DOWN;
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_D) {
-			if (directionOfPlayer2 != Direction.LEFT){
-				directionOfPlayer2 = Direction.RIGHT;
+			if (directionOfPlayer2 != Player.Direction.LEFT){
+				directionOfPlayer2 = Player.Direction.RIGHT;
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_A) {
-			if (directionOfPlayer2 != Direction.RIGHT){
-				directionOfPlayer2 = Direction.LEFT;
+			if (directionOfPlayer2 != Player.Direction.RIGHT){
+				directionOfPlayer2 = Player.Direction.LEFT;
 			}
 		}
 	}

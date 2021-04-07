@@ -35,16 +35,27 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 	}
 
 	public void draw(Graphics2D g) {
-		movePlayers();
-		checkForCollisions();
+		updateGameState();
+		drawGameState(g);
+	}
 
-		pathOfPlayer1.add(new Coordinates(locationOfPlayer1));
-	    pathOfPlayer2.add(new Coordinates(locationOfPlayer2));
-
-	    g.setColor(Color.BLACK);
+	private void drawGameState(Graphics2D g) {
+		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, sm.getWidth(), sm.getHeight());
 		drawPlayerPath(g, pathOfPlayer1, Color.green);
 		drawPlayerPath(g, pathOfPlayer2, Color.red);
+	}
+
+	private void updateGameState() {
+		movePlayers();
+		checkForCollisions();
+
+		updatePlayerPaths();
+	}
+
+	private void updatePlayerPaths() {
+		pathOfPlayer1.add(new Coordinates(locationOfPlayer1));
+		pathOfPlayer2.add(new Coordinates(locationOfPlayer2));
 	}
 
 	private void movePlayers() {

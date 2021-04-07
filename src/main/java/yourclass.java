@@ -11,8 +11,9 @@ import java.util.ArrayList;
 public class yourclass extends Core implements KeyListener, MouseListener,
 		MouseMotionListener {
 
-	Player player1 = new Player(new Coordinates(40,40), Player.Direction.RIGHT);
-	Player player2 = new Player(new Coordinates(600,440), Player.Direction.LEFT);
+	TronPlayer tronPlayer1 = new TronPlayer(new Coordinates(40,40), TronPlayer.Direction.RIGHT);
+	TronPlayer tronPlayer2 = new TronPlayer(new Coordinates(600,440), TronPlayer.Direction.LEFT);
+
 
 	int moveAmount = 5;
 
@@ -37,8 +38,8 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 	private void drawGameState(Graphics2D g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, sm.getWidth(), sm.getHeight());
-		drawPlayerPath(g, player1.path, Color.green);
-		drawPlayerPath(g, player2.path, Color.red);
+		drawPlayerPath(g, tronPlayer1.path, Color.green);
+		drawPlayerPath(g, tronPlayer2.path, Color.red);
 	}
 
 	private void updateGameState() {
@@ -48,20 +49,20 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 	}
 
 	private void updatePlayerPaths() {
-		player1.updatePath();
-		player2.updatePath();
+		tronPlayer1.updatePath();
+		tronPlayer2.updatePath();
 	}
 
 	private void movePlayers() {
-		player1.movePlayer(moveAmount,sm.getWidth(),sm.getHeight());
-		player2.movePlayer(moveAmount,sm.getWidth(),sm.getHeight());
+		tronPlayer1.movePlayer(moveAmount,sm.getWidth(),sm.getHeight());
+		tronPlayer2.movePlayer(moveAmount,sm.getWidth(),sm.getHeight());
 	}
 
 	private void checkForCollisions() {
-		if(		player1.checkCollision(player1) ||
-				player1.checkCollision(player2) ||
-				player2.checkCollision(player1) ||
-				player2.checkCollision(player2)){
+		if(		tronPlayer1.checkCollision(tronPlayer1) ||
+				tronPlayer1.checkCollision(tronPlayer2) ||
+				tronPlayer2.checkCollision(tronPlayer1) ||
+				tronPlayer2.checkCollision(tronPlayer2)){
 			System.exit(0);
 		}
 	}
@@ -73,7 +74,7 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 		}
 	}
 
-	private void movePlayer(Player.Direction direction, Coordinates location) {
+	private void movePlayer(TronPlayer.Direction direction, Coordinates location) {
 		switch(direction){
 		case UP:
 			if (location.getY()>0){
@@ -109,23 +110,23 @@ public class yourclass extends Core implements KeyListener, MouseListener,
 
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			player1.setDirectionUP();
+			tronPlayer1.setDirectionUP();
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			player1.setDirectionDOWN();
+			tronPlayer1.setDirectionDOWN();
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			player1.setDirectionRIGHT();
+			tronPlayer1.setDirectionRIGHT();
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			player1.setDirectionLEFT();
+			tronPlayer1.setDirectionLEFT();
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_W) {
-			player2.setDirectionUP();
+			tronPlayer2.setDirectionUP();
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
-			player2.setDirectionDOWN();
+			tronPlayer2.setDirectionDOWN();
 		} else if (e.getKeyCode() == KeyEvent.VK_D) {
-			player2.setDirectionRIGHT();
+			tronPlayer2.setDirectionRIGHT();
 		} else if (e.getKeyCode() == KeyEvent.VK_A) {
-			player2.setDirectionLEFT();
+			tronPlayer2.setDirectionLEFT();
 		}
 	}
 

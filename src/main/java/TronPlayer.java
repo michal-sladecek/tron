@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
-public class Player {
+public class TronPlayer {
     Coordinates location;
     Direction direction;
     ArrayList<Coordinates> path = new ArrayList<Coordinates>();
 
-    public Player(Coordinates location, Direction direction) {
+    public TronPlayer(Coordinates location, Direction direction) {
         this.location = location;
         this.direction = direction;
     }
@@ -43,9 +43,9 @@ public class Player {
         }
     }
 
-    public boolean checkCollision(Player otherPlayer){
+    public boolean checkCollision(TronPlayer otherTronPlayer){
         for(int i=0;i<path.size();i++){
-            if(otherPlayer.location.equals(path.get(i))){
+            if(otherTronPlayer.location.equals(path.get(i))){
                 return true;
             }
         }

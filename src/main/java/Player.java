@@ -1,9 +1,14 @@
 import java.util.ArrayList;
 
 public class Player {
-    Coordinates location = new Coordinates(40,40);
-    Direction direction = Direction.RIGHT;
+    Coordinates location;
+    Direction direction;
     ArrayList<Coordinates> path = new ArrayList<Coordinates>();
+
+    public Player(Coordinates location, Direction direction) {
+        this.location = location;
+        this.direction = direction;
+    }
 
     public void movePlayer(int moveAmount, int gameWidth, int gameHeight) {
         switch(direction){
@@ -38,6 +43,15 @@ public class Player {
         }
     }
 
+    public boolean checkCollision(Player otherPlayer){
+        for(int i=0;i<path.size();i++){
+            if(otherPlayer.location.equals(path.get(i))){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void updatePath(){
         path.add(new Coordinates(location));
     }
@@ -49,6 +63,4 @@ public class Player {
         DOWN,
         LEFT
     }
-
-
 }

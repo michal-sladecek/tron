@@ -57,15 +57,7 @@ public class Engine extends Core {
         }
     }
 
-    private void checkForCollisions() {
-        for (GameObject o1: gameObjects) {
-            for (GameObject o2: gameObjects) {
-                if(o1 != o2 && o1.checkCollision(o2)){
-                    System.exit(0);
-                }
-            }
-        }
-    }
+
 
     private void drawPlayerPath(Graphics2D g, ArrayList<Coordinates> playerPath, Color color) {
         for (Coordinates coordinates : playerPath) {

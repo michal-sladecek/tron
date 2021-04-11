@@ -74,11 +74,18 @@ public class TronPlayer extends GameObject {
             this.direction = Direction.valueOf((this.direction.getValue() - 1) % 4);
         }
     }
+    
     @Override
     public void update() {
         movePlayer(TronConstants.MOVE_AMOUNT);
         updatePath();
     }
+
+    @Override
+    public void handleCollision(GameObject object) {
+        System.exit(0);
+    }
+
     public enum Direction {
         UP(0),
         RIGHT(1),

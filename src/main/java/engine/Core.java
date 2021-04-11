@@ -2,8 +2,12 @@ package engine;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public abstract class Core {
+	protected ArrayList<GameObject> gameObjects = new ArrayList<>();
+
+	protected ArrayList<GameControl> controls  = new ArrayList<>();
 
 	private static final DisplayMode modes[] = 
 		{

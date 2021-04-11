@@ -10,9 +10,6 @@ import java.util.ArrayList;
 
 public class Engine extends Core {
 
-    ArrayList<GameObject> gameObjects = new ArrayList<>();
-
-    ArrayList<GameControl> controls  = new ArrayList<>();
 
     public void init() {
         super.init();

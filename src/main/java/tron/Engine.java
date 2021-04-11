@@ -11,9 +11,6 @@ import java.util.ArrayList;
 public class Engine extends Core {
 
 
-
-
-    //TODO extract draw methods
     @Override
     public void draw(Graphics2D g) {
         updateGameState();
@@ -31,23 +28,19 @@ public class Engine extends Core {
     }
 
     private void updateGameState() {
-        moveObjects();
-        checkForCollisions();
         update();
+        checkForCollisions();
     }
 
     private void update() {
         for (GameObject gameObject : gameObjects) {
             gameObject.update();
-        }
-    }
-
-    private void moveObjects() {
-        for (GameObject gameObject : gameObjects) {
-            gameObject.move();
             correctOutOfBounds(gameObject);
         }
     }
+
+
+
     public void correctOutOfBounds(GameObject gameObject) {
         Coordinates location = gameObject.getLocation();
         if (location.getY() < 0){
@@ -67,7 +60,7 @@ public class Engine extends Core {
     private void checkForCollisions() {
         for (GameObject o1: gameObjects) {
             for (GameObject o2: gameObjects) {
-                if(o1.checkCollision(o2)){
+                if(o1 != o2 && o1.checkCollision(o2)){
                     System.exit(0);
                 }
             }

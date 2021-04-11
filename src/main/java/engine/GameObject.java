@@ -23,8 +23,6 @@ public abstract class GameObject {
         return color;
     }
 
-    public abstract void move();
-
     public abstract boolean checkCollision(GameObject other);
 
     public abstract void update();

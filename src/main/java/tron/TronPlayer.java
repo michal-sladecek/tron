@@ -17,9 +17,6 @@ public class TronPlayer extends GameObject {
         this.direction = direction;
     }
 
-    public void move() {
-        movePlayer(TronConstants.MOVE_AMOUNT);
-    }
 
     public void movePlayer(int moveAmount) {
         switch(direction){
@@ -79,6 +76,7 @@ public class TronPlayer extends GameObject {
     }
     @Override
     public void update() {
+        movePlayer(TronConstants.MOVE_AMOUNT);
         updatePath();
     }
     public enum Direction {

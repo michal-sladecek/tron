@@ -45,7 +45,13 @@ public abstract class Core {
 		w.setFont(new Font("Arial",Font.PLAIN,20));
 		w.setBackground(Color.WHITE);
 		w.setForeground(Color.RED);
-		w.setCursor(w.getToolkit().createCustomCursor(new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB), new Point(0, 0),"null")); 
+		w.setCursor(w.getToolkit().createCustomCursor(new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB), new Point(0, 0),"null"));
+		
+		for (GameControl x: controls) {
+			w.addKeyListener(x);
+			w.addMouseListener(x);
+		}
+
 		running = true;
 	}
 	

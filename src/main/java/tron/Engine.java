@@ -13,14 +13,6 @@ public class Engine extends Core {
 
     public void init() {
         super.init();
-
-        Window w = sm.getFullScreenWindow();
-
-        for (GameControl x: controls) {
-            w.addKeyListener(x);
-            w.addMouseListener(x);
-            //w.addMouseMotionListener(x);
-        }
     }
 
     public void setGameObjects(ArrayList<GameObject> players) {

@@ -1,54 +1,39 @@
 import java.awt.*;
 import java.util.ArrayList;
 
-public class TronPlayer {
-    Coordinates location;
-    Direction direction;
-    ArrayList<Coordinates> path = new ArrayList<Coordinates>();
-    Color color;
+public class TronPlayer extends GameObject{
+    ArrayList<Coordinates> path = new ArrayList<>();
+    protected TronPlayer.Direction direction;
 
     public TronPlayer(Coordinates location, Direction direction, Color color) {
-        this.location = location;
+        super(location, color);
         this.direction = direction;
-        this.color = color;
     }
 
-    public void movePlayer(int moveAmount, int gameWidth, int gameHeight) {
+    public void move() {
+        movePlayer(TronConstants.MOVE_AMOUNT);
+    }
+
+    public void movePlayer(int moveAmount) {
         switch(direction){
             case UP:
-                if (location.getY()>0){
-                    location.move(0,-moveAmount);
-                } else {
-                    location.setY(gameHeight);
-                }
+                location.move(0,-moveAmount);
                 break;
             case RIGHT:
-                if (location.getX() < gameWidth){
-                    location.move(moveAmount,0);
-                } else {
-                    location.setX(0);
-                }
+                location.move(moveAmount,0);
                 break;
             case DOWN:
-                if (location.getY() < gameHeight){
-                    location.move(0,moveAmount);
-                } else {
-                    location.setY(0);
-                }
+                location.move(0,moveAmount);
                 break;
             case LEFT:
-                if (location.getX()>0){
-                    location.move(-moveAmount,0);
-                } else {
-                    location.setX(gameWidth);
-                }
+                location.move(-moveAmount,0);
                 break;
         }
     }
 
-    public boolean checkCollision(TronPlayer otherTronPlayer){
-        for(int i=0;i<path.size();i++){
-            if(otherTronPlayer.location.equals(path.get(i))){
+    public boolean checkCollision(GameObject other){
+        for (Coordinates coordinates : path) {
+            if (other.location.equals(coordinates)) {
                 return true;
             }
         }
@@ -76,6 +61,10 @@ public class TronPlayer {
             this.direction = Direction.LEFT;
     }
 
+    @Override
+    public void update() {
+        updatePath();
+    }
     enum Direction{
         UP,
         RIGHT,

@@ -1,10 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Window;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 import java.lang.management.PlatformLoggingMXBean;
 import java.util.ArrayList;
 
@@ -15,17 +12,21 @@ public class yourclass implements  MouseListener,
 
 	private void setupPlayers() {
 
-		ArrayList<TronPlayer> players = new ArrayList<>();
-		ArrayList<TronPlayerControl> controls  = new ArrayList<>();
+		ArrayList<GameObject> players = new ArrayList<>();
+		ArrayList<KeyListener> controls  = new ArrayList<>();
 
-		players.add(new TronPlayer(new Coordinates(40,40), TronPlayer.Direction.RIGHT, Color.green));
-		players.add(new TronPlayer(new Coordinates(600,440), TronPlayer.Direction.LEFT, Color.red));
-		players.add(new TronPlayer(new Coordinates(900,500), TronPlayer.Direction.UP, Color.yellow));
+		TronPlayer p1 = new TronPlayer(new Coordinates(40,40), TronPlayer.Direction.RIGHT, Color.green);
+		TronPlayer p2 = new TronPlayer(new Coordinates(600,440), TronPlayer.Direction.LEFT, Color.red);
+		TronPlayer p3 = new TronPlayer(new Coordinates(900,500), TronPlayer.Direction.UP, Color.yellow);
 
-		controls.add(new TronPlayerControl(players.get(0),KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT));
-		controls.add(new TronPlayerControl(players.get(1),KeyEvent.VK_W,KeyEvent.VK_S,KeyEvent.VK_D,KeyEvent.VK_A));
+		players.add(p1);
+		players.add(p2);
+		players.add(p3);
 
-		engine.setPlayers(players);
+		controls.add((new TronPlayerControl(p1, KeyEvent.VK_UP,KeyEvent.VK_DOWN, KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT)));
+		controls.add((new TronPlayerControl(p2, KeyEvent.VK_W,KeyEvent.VK_S, KeyEvent.VK_D, KeyEvent.VK_A)));
+
+		engine.setGameObjects(players);
 		engine.setControls(controls);
 	}
 

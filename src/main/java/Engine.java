@@ -1,34 +1,33 @@
 import java.awt.*;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 public class Engine extends Core{
 
-    ArrayList<TronPlayer> players = new ArrayList<>();
-    ArrayList<TronPlayerControl> controls  = new ArrayList<>();
+    ArrayList<GameObject> gameObjects = new ArrayList<>();
 
-    int moveAmount = 5;
+    ArrayList<KeyListener> controls  = new ArrayList<>();
 
     public void init() {
         super.init();
 
         Window w = sm.getFullScreenWindow();
 
-        for (TronPlayerControl x: controls) {
+        for (KeyListener x: controls) {
             w.addKeyListener(x);
         }
-
         //w.addMouseListener(this);
         //w.addMouseMotionListener(this);
     }
 
-    public void setPlayers(ArrayList<TronPlayer> players) {
-        this.players = players;
+    public void setGameObjects(ArrayList<GameObject> players) {
+        this.gameObjects = players;
     }
-
-    public void setControls(ArrayList<TronPlayerControl> controls) {
+    public void setControls(ArrayList<KeyListener> controls) {
         this.controls = controls;
     }
 
+    //TODO extract draw methods
     @Override
     public void draw(Graphics2D g) {
         updateGameState();
@@ -38,33 +37,51 @@ public class Engine extends Core{
     private void drawGameState(Graphics2D g) {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, sm.getWidth(), sm.getHeight());
-        for (TronPlayer player: players) {
-            drawPlayerPath(g,player.path,player.color);
+
+        for (GameObject gameObject: gameObjects) {
+            TronPlayer player = (TronPlayer) gameObject;
+            drawPlayerPath(g,player.path,player.getColor());
         }
     }
 
     private void updateGameState() {
-        movePlayers();
+        moveObjects();
         checkForCollisions();
-        updatePlayerPaths();
+        update();
     }
 
-    private void updatePlayerPaths() {
-        for (TronPlayer player: players) {
-            player.updatePath();
+    private void update() {
+        for (GameObject gameObject : gameObjects) {
+            gameObject.update();
         }
     }
 
-    private void movePlayers() {
-        for (TronPlayer player: players) {
-            player.movePlayer(moveAmount,sm.getWidth(), sm.getHeight());
+    private void moveObjects() {
+        for (GameObject gameObject : gameObjects) {
+            gameObject.move();
+            correctOutOfBounds(gameObject);
+        }
+    }
+    public void correctOutOfBounds(GameObject gameObject) {
+        Coordinates location = gameObject.getLocation();
+        if (location.getY() < 0){
+            location.setY(sm.getHeight());
+        }
+        if (location.getX() > sm.getWidth()){
+            location.setX(0);
+        }
+        if (location.getY() > sm.getHeight()){
+            location.setY(0);
+        }
+        if (location.getX() < 0){
+            location.setX(sm.getWidth());
         }
     }
 
     private void checkForCollisions() {
-        for (TronPlayer player1: players) {
-            for (TronPlayer player2: players) {
-                if(player1.checkCollision(player2)){
+        for (GameObject o1: gameObjects) {
+            for (GameObject o2: gameObjects) {
+                if(o1.checkCollision(o2)){
                     System.exit(0);
                 }
             }
@@ -72,9 +89,9 @@ public class Engine extends Core{
     }
 
     private void drawPlayerPath(Graphics2D g, ArrayList<Coordinates> playerPath, Color color) {
-        for (int x = 0; x < playerPath.size(); x++) {
+        for (Coordinates coordinates : playerPath) {
             g.setColor(color);
-            g.fillRect(playerPath.get(x).getX(), playerPath.get(x).getY(), 10, 10);
+            g.fillRect(coordinates.getX(), coordinates.getY(), 10, 10);
         }
     }
 }

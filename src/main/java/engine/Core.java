@@ -46,7 +46,7 @@ public abstract class Core {
 		w.setBackground(Color.WHITE);
 		w.setForeground(Color.RED);
 		w.setCursor(w.getToolkit().createCustomCursor(new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB), new Point(0, 0),"null"));
-		
+
 		for (GameControl x: controls) {
 			w.addKeyListener(x);
 			w.addMouseListener(x);
@@ -77,5 +77,12 @@ public abstract class Core {
 	public void update(long timePassed){}
 	
 	public abstract void draw(Graphics2D g);
-	
+
+	public void addGameObject(GameObject object){
+		this.gameObjects.add(object);
+	}
+
+	public void addGameControl(GameControl control){
+		this.controls.add(control);
+	}
 }

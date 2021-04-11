@@ -22,16 +22,14 @@ public class yourclass implements  MouseListener,
 		TronPlayer p2 = new TronPlayer(new Coordinates(600,440), TronPlayer.Direction.LEFT, Color.red);
 		TronPlayer p3 = new TronPlayer(new Coordinates(900,500), TronPlayer.Direction.UP, Color.yellow);
 
-		players.add(p1);
-		players.add(p2);
-		players.add(p3);
 
-		controls.add((new TronPlayerControl(p1, KeyEvent.VK_UP,KeyEvent.VK_DOWN, KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT)));
-		controls.add((new TronPlayerControl(p2, KeyEvent.VK_W,KeyEvent.VK_S, KeyEvent.VK_D, KeyEvent.VK_A)));
-		controls.add((new TronPlayerControl(p3, MouseEvent.BUTTON1, MouseEvent.BUTTON3)));
+		engine.addGameObject(p1);
+		engine.addGameObject(p2);
+		engine.addGameObject(p3);
 
-		engine.setGameObjects(players);
-		engine.setControls(controls);
+		engine.addGameControl(new TronPlayerControl(p1, KeyEvent.VK_UP,KeyEvent.VK_DOWN, KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT));
+		engine.addGameControl(new TronPlayerControl(p2, KeyEvent.VK_W,KeyEvent.VK_S, KeyEvent.VK_D, KeyEvent.VK_A));
+		engine.addGameControl(new TronPlayerControl(p3, MouseEvent.BUTTON1, MouseEvent.BUTTON3));
 	}
 
 	public static void main(String[] args) {

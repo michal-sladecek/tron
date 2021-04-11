@@ -11,16 +11,7 @@ import java.util.ArrayList;
 public class Engine extends Core {
 
 
-    public void init() {
-        super.init();
-    }
 
-    public void setGameObjects(ArrayList<GameObject> players) {
-        this.gameObjects = players;
-    }
-    public void setControls(ArrayList<GameControl> controls) {
-        this.controls = controls;
-    }
 
     //TODO extract draw methods
     @Override

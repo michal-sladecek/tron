@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public abstract class Core {
 	protected ArrayList<GameObject> gameObjects = new ArrayList<>();
+	protected ArrayList<GameObject> newGameObjects = new ArrayList<>();
 
 	protected ArrayList<GameControl> controls  = new ArrayList<>();
 
@@ -79,7 +80,7 @@ public abstract class Core {
 	public abstract void draw(Graphics2D g);
 
 	public void addGameObject(GameObject object){
-		this.gameObjects.add(object);
+		this.newGameObjects.add(object);
 	}
 
 	public void addGameControl(GameControl control){
@@ -95,6 +96,14 @@ public abstract class Core {
 				}
 			}
 		}
+	}
+
+	protected void update() {
+		for (GameObject gameObject : gameObjects) {
+			gameObject.update();
+		}
+		gameObjects.addAll(newGameObjects);
+		newGameObjects.clear();
 	}
 
 	public int getGameWidth(){

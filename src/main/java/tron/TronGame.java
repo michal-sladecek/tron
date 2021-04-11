@@ -42,27 +42,11 @@ public class TronGame extends Core {
         g.fillRect(0, 0, sm.getWidth(), sm.getHeight());
 
         for (GameObject gameObject: gameObjects) {
-            TronPlayer player = (TronPlayer) gameObject;
-            drawPlayerPath(g,player.path,player.getColor());
+            g.setColor(gameObject.getColor());
+            g.fillRect(gameObject.getLocation().getX(),gameObject.getLocation().getY(),10,10);
         }
     }
 
-    private void update() {
-        for (GameObject gameObject : gameObjects) {
-            gameObject.update();
-        }
-    }
-
-
-
-
-
-    private void drawPlayerPath(Graphics2D g, ArrayList<Coordinates> playerPath, Color color) {
-        for (Coordinates coordinates : playerPath) {
-            g.setColor(color);
-            g.fillRect(coordinates.getX(), coordinates.getY(), 10, 10);
-        }
-    }
 
 
     public static void main(String[] args) {

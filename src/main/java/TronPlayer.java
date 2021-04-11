@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TronPlayer extends GameObject{
     ArrayList<Coordinates> path = new ArrayList<>();
@@ -60,15 +62,45 @@ public class TronPlayer extends GameObject{
         if(this.direction != Direction.RIGHT)
             this.direction = Direction.LEFT;
     }
-
+    public void rotateRight() {
+        this.direction = Direction.valueOf((this.direction.getValue() + 1) % 4);
+    }
+    public void rotateLeft() {
+        if (direction.getValue() == 0) {
+            direction = Direction.valueOf(3);
+        } else {
+            this.direction = Direction.valueOf((this.direction.getValue() - 1) % 4);
+        }
+    }
     @Override
     public void update() {
         updatePath();
     }
-    enum Direction{
-        UP,
-        RIGHT,
-        DOWN,
-        LEFT
+    public enum Direction {
+        UP(0),
+        RIGHT(1),
+        DOWN(2),
+        LEFT(3);
+
+        private int value;
+        private static Map<Integer, Direction> map = new HashMap<>();
+
+        Direction(int value) {
+            this.value = value;
+        }
+
+        static {
+            for (Direction direction : Direction.values()) {
+                map.put(direction.value, direction);
+            }
+        }
+
+        public static Direction valueOf(int direction) {
+            return map.get(direction);
+        }
+
+        public int getValue() {
+            return value;
+        }
     }
 }

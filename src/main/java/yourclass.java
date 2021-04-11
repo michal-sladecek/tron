@@ -13,7 +13,7 @@ public class yourclass implements  MouseListener,
 	private void setupPlayers() {
 
 		ArrayList<GameObject> players = new ArrayList<>();
-		ArrayList<KeyListener> controls  = new ArrayList<>();
+		ArrayList<GameControl> controls  = new ArrayList<>();
 
 		TronPlayer p1 = new TronPlayer(new Coordinates(40,40), TronPlayer.Direction.RIGHT, Color.green);
 		TronPlayer p2 = new TronPlayer(new Coordinates(600,440), TronPlayer.Direction.LEFT, Color.red);
@@ -25,6 +25,7 @@ public class yourclass implements  MouseListener,
 
 		controls.add((new TronPlayerControl(p1, KeyEvent.VK_UP,KeyEvent.VK_DOWN, KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT)));
 		controls.add((new TronPlayerControl(p2, KeyEvent.VK_W,KeyEvent.VK_S, KeyEvent.VK_D, KeyEvent.VK_A)));
+		controls.add((new TronPlayerControl(p3, MouseEvent.BUTTON1, MouseEvent.BUTTON3)));
 
 		engine.setGameObjects(players);
 		engine.setControls(controls);

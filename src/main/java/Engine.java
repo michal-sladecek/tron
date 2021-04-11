@@ -6,24 +6,24 @@ public class Engine extends Core{
 
     ArrayList<GameObject> gameObjects = new ArrayList<>();
 
-    ArrayList<KeyListener> controls  = new ArrayList<>();
+    ArrayList<GameControl> controls  = new ArrayList<>();
 
     public void init() {
         super.init();
 
         Window w = sm.getFullScreenWindow();
 
-        for (KeyListener x: controls) {
+        for (GameControl x: controls) {
             w.addKeyListener(x);
+            w.addMouseListener(x);
+            //w.addMouseMotionListener(x);
         }
-        //w.addMouseListener(this);
-        //w.addMouseMotionListener(this);
     }
 
     public void setGameObjects(ArrayList<GameObject> players) {
         this.gameObjects = players;
     }
-    public void setControls(ArrayList<KeyListener> controls) {
+    public void setControls(ArrayList<GameControl> controls) {
         this.controls = controls;
     }
 

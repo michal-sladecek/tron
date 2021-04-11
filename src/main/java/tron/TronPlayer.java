@@ -1,6 +1,7 @@
 package tron;
 
 import engine.Coordinates;
+import engine.Core;
 import engine.GameObject;
 
 import java.awt.*;
@@ -11,12 +12,29 @@ import java.util.Map;
 public class TronPlayer extends GameObject {
     ArrayList<Coordinates> path = new ArrayList<>();
     protected TronPlayer.Direction direction;
+    private Core game;
 
-    public TronPlayer(Coordinates location, Direction direction, Color color) {
+    public TronPlayer(Coordinates location, Direction direction, Color color, Core engine) {
         super(location, color);
         this.direction = direction;
+        this.game = engine;
     }
 
+
+    public void correctOutOfBounds() {
+        if (location.getY() < 0){
+            location.setY(game.getGameHeight());
+        }
+        if (location.getX() > game.getGameWidth()){
+            location.setX(0);
+        }
+        if (location.getY() > game.getGameHeight()){
+            location.setY(0);
+        }
+        if (location.getX() < 0){
+            location.setX(game.getGameWidth());
+        }
+    }
 
     public void movePlayer(int moveAmount) {
         switch(direction){
@@ -33,6 +51,7 @@ public class TronPlayer extends GameObject {
                 location.move(-moveAmount,0);
                 break;
         }
+        correctOutOfBounds();
     }
 
     public boolean checkCollision(GameObject other){
@@ -74,7 +93,7 @@ public class TronPlayer extends GameObject {
             this.direction = Direction.valueOf((this.direction.getValue() - 1) % 4);
         }
     }
-    
+
     @Override
     public void update() {
         movePlayer(TronConstants.MOVE_AMOUNT);

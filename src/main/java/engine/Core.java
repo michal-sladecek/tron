@@ -96,4 +96,12 @@ public abstract class Core {
 			}
 		}
 	}
+
+	public int getGameWidth(){
+		return sm.getWidth();
+	}
+
+	public int getGameHeight(){
+		return sm.getHeight();
+	}
 }

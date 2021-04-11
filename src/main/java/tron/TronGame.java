@@ -47,8 +47,6 @@ public class TronGame extends Core {
         }
     }
 
-
-
     public static void main(String[] args) {
         TronGame y = new TronGame();
         y.run();

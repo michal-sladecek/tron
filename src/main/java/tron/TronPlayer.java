@@ -51,7 +51,6 @@ public class TronPlayer extends GameObject {
                 location.move(-moveAmount,0);
                 break;
         }
-        correctOutOfBounds();
     }
 
     public boolean checkCollision(GameObject other){
@@ -61,9 +60,6 @@ public class TronPlayer extends GameObject {
         return false;
     }
 
-    public void updatePath(){
-        game.addGameObject(new TronPlayerPathBlock(new Coordinates(location),color));
-    }
 
     public void setDirectionUP(){
         if(this.direction != Direction.DOWN)
@@ -94,8 +90,9 @@ public class TronPlayer extends GameObject {
 
     @Override
     public void update() {
-        updatePath();
+        game.addGameObject(new TronPlayerPathBlock(new Coordinates(location),color));
         movePlayer(TronConstants.MOVE_AMOUNT);
+        correctOutOfBounds();
     }
 
     @Override

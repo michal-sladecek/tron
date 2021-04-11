@@ -1,5 +1,6 @@
+package engine;
+
 import java.awt.*;
-import java.util.ArrayList;
 
 public abstract class GameObject {
     protected Coordinates location;

@@ -1,8 +1,14 @@
+package tron;
+
+import engine.Coordinates;
+import engine.Core;
+import engine.GameControl;
+import engine.GameObject;
+
 import java.awt.*;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-public class Engine extends Core{
+public class Engine extends Core {
 
     ArrayList<GameObject> gameObjects = new ArrayList<>();
 

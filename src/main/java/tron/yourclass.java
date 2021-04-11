@@ -1,8 +1,11 @@
+package tron;
+
+import engine.Coordinates;
+import engine.GameControl;
+import engine.GameObject;
+
 import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Window;
 import java.awt.event.*;
-import java.lang.management.PlatformLoggingMXBean;
 import java.util.ArrayList;
 
 public class yourclass implements  MouseListener,

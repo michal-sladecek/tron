@@ -1,3 +1,8 @@
+package tron;
+
+import engine.GameControl;
+import tron.TronPlayer;
+
 import java.awt.event.*;
 
 public class TronPlayerControl extends GameControl {

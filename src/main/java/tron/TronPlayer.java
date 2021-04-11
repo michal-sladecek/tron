@@ -1,9 +1,14 @@
+package tron;
+
+import engine.Coordinates;
+import engine.GameObject;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TronPlayer extends GameObject{
+public class TronPlayer extends GameObject {
     ArrayList<Coordinates> path = new ArrayList<>();
     protected TronPlayer.Direction direction;
 
@@ -35,7 +40,7 @@ public class TronPlayer extends GameObject{
 
     public boolean checkCollision(GameObject other){
         for (Coordinates coordinates : path) {
-            if (other.location.equals(coordinates)) {
+            if (other.getLocation().equals(coordinates)) {
                 return true;
             }
         }

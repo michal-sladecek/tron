@@ -27,13 +27,8 @@ public abstract class Core {
 	}
 	
 	public void gameLoop(){
-		long startTime = System.currentTimeMillis();
-		long cumTime = startTime;
-		
+
 		while (running){
-			long timePassed = System.currentTimeMillis()-cumTime;
-			cumTime+= timePassed;
-			update(timePassed);
 			update();
 			checkForCollisions();
 			presentation.updatePresentation();
@@ -43,7 +38,6 @@ public abstract class Core {
 		}
 	}
 	
-	public void update(long timePassed){}
 
 	public void addGameObject(GameObject object){
 		this.newGameObjects.add(object);

@@ -18,15 +18,12 @@ public abstract class GamePresentation {
             };
 
     protected ScreenManager sm;
-    public Window getWindow(){
-        return sm.getFullScreenWindow();
-    }
 
     public GamePresentation() {
         sm = new ScreenManager();
         DisplayMode dm = sm.findFirstCompatibaleMode(modes);
         sm.setFullScreen(dm);
-        Window w = getWindow();
+        Window w = sm.getFullScreenWindow();
         w.setFont(new Font("Arial",Font.PLAIN,20));
         w.setBackground(Color.WHITE);
         w.setForeground(Color.RED);
@@ -53,7 +50,7 @@ public abstract class GamePresentation {
     public abstract void draw();
 
     public void addGameControl(GameControl control){
-        getWindow().addKeyListener(control);
-        getWindow().addMouseListener(control);
+        sm.getFullScreenWindow().addKeyListener(control);
+        sm.getFullScreenWindow().addMouseListener(control);
     }
 }

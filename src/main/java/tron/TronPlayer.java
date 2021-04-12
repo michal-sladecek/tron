@@ -2,16 +2,15 @@ package tron;
 
 import engine.Coordinates;
 import engine.Core;
+import engine.Direction;
 import engine.GameObject;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class TronPlayer extends GameObject {
     ArrayList<Coordinates> path = new ArrayList<>();
-    protected TronPlayer.Direction direction;
+    protected Direction direction;
     private Core game;
 
     public TronPlayer(Coordinates location, Direction direction, Color color, Core engine) {
@@ -98,31 +97,4 @@ public class TronPlayer extends GameObject {
         System.exit(0);
     }
 
-    public enum Direction {
-        UP(0),
-        RIGHT(1),
-        DOWN(2),
-        LEFT(3);
-
-        private int value;
-        private static Map<Integer, Direction> map = new HashMap<>();
-
-        Direction(int value) {
-            this.value = value;
-        }
-
-        static {
-            for (Direction direction : Direction.values()) {
-                map.put(direction.value, direction);
-            }
-        }
-
-        public static Direction valueOf(int direction) {
-            return map.get(direction);
-        }
-
-        public int getValue() {
-            return value;
-        }
-    }
 }

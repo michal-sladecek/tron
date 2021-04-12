@@ -2,6 +2,7 @@ package tron;
 
 import engine.Coordinates;
 import engine.Core;
+import engine.Direction;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -12,9 +13,9 @@ public class TronGame extends Core {
     public TronGame() {
         super();
         this.presentation = new TronPresentation(this);
-        TronPlayer p1 = new TronPlayer(new Coordinates(40,40), TronPlayer.Direction.RIGHT, Color.green,this);
-        TronPlayer p2 = new TronPlayer(new Coordinates(600,440), TronPlayer.Direction.LEFT, Color.red,this);
-        TronPlayer p3 = new TronPlayer(new Coordinates(900,500), TronPlayer.Direction.UP, Color.yellow,this);
+        TronPlayer p1 = new TronPlayer(new Coordinates(40,40), Direction.RIGHT, Color.green,this);
+        TronPlayer p2 = new TronPlayer(new Coordinates(600,440), Direction.LEFT, Color.red,this);
+        TronPlayer p3 = new TronPlayer(new Coordinates(900,500), Direction.UP, Color.yellow,this);
 
 
         addGameObject(p1);

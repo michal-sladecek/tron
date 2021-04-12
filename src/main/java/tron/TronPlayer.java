@@ -20,7 +20,6 @@ public class TronPlayer extends GameObject {
         this.game = engine;
     }
 
-
     public void correctOutOfBounds() {
         if (location.getY() < 0){
             location.setY(game.getGameHeight());
@@ -59,7 +58,6 @@ public class TronPlayer extends GameObject {
         }
         return false;
     }
-
 
     public void setDirectionUP(){
         if(this.direction != Direction.DOWN)

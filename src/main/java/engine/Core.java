@@ -8,23 +8,9 @@ public abstract class Core {
 	protected ArrayList<GameObject> gameObjects = new ArrayList<>();
 	protected ArrayList<GameObject> newGameObjects = new ArrayList<>();
 
-	protected ArrayList<GameControl> controls  = new ArrayList<>();
-
-	private static final DisplayMode modes[] = 
-		{
-		//new DisplayMode(1920,1080,32,0),
-		new DisplayMode(1680,1050,32,0),
-		//new DisplayMode(1280,1024,32,0),
-		new DisplayMode(800,600,32,0),
-		new DisplayMode(800,600,24,0),
-		new DisplayMode(800,600,16,0),
-		new DisplayMode(640,480,32,0),
-		new DisplayMode(640,480,24,0),
-		new DisplayMode(640,480,16,0),
-		};
 	private boolean running;
-	protected ScreenManager sm;
-	
+	protected GamePresentation presentation;
+
 	public void stop(){
 		running = false;
 	}
@@ -34,25 +20,15 @@ public abstract class Core {
 			init();
 			gameLoop();
 		}finally{
-			sm.restoreScreen();
+			presentation.restore();
 		}
 	}
-	
+
+	public ArrayList<GameObject> getGameObjects() {
+		return gameObjects;
+	}
+
 	public void init(){
-		sm = new ScreenManager();
-		DisplayMode dm = sm.findFirstCompatibaleMode(modes);
-		sm.setFullScreen(dm);
-		Window w = sm.getFullScreenWindow();
-		w.setFont(new Font("Arial",Font.PLAIN,20));
-		w.setBackground(Color.WHITE);
-		w.setForeground(Color.RED);
-		w.setCursor(w.getToolkit().createCustomCursor(new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB), new Point(0, 0),"null"));
-
-		for (GameControl x: controls) {
-			w.addKeyListener(x);
-			w.addMouseListener(x);
-		}
-
 		running = true;
 	}
 	
@@ -64,11 +40,9 @@ public abstract class Core {
 			long timePassed = System.currentTimeMillis()-cumTime;
 			cumTime+= timePassed;
 			update(timePassed);
-			Graphics2D g = sm.getGraphics();
-			draw(g);
-			g.dispose();
-			sm.update();
-			
+			update();
+			checkForCollisions();
+			presentation.updatePresentation();
 			try{
 				Thread.sleep(20);
 			}catch(Exception ex){}
@@ -76,15 +50,16 @@ public abstract class Core {
 	}
 	
 	public void update(long timePassed){}
-	
-	public abstract void draw(Graphics2D g);
+
+
 
 	public void addGameObject(GameObject object){
 		this.newGameObjects.add(object);
 	}
 
 	public void addGameControl(GameControl control){
-		this.controls.add(control);
+		presentation.getWindow().addKeyListener(control);
+		presentation.getWindow().addMouseListener(control);
 	}
 
 	protected void checkForCollisions() {
@@ -106,11 +81,13 @@ public abstract class Core {
 		newGameObjects.clear();
 	}
 
+
+
 	public int getGameWidth(){
-		return sm.getWidth();
+		return presentation.getScreenWidth();
 	}
 
 	public int getGameHeight(){
-		return sm.getHeight();
+		return presentation.getScreenHeight();
 	}
 }

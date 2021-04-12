@@ -1,7 +1,5 @@
 package engine;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public abstract class Core {
@@ -11,10 +9,6 @@ public abstract class Core {
 	private boolean running;
 	protected GamePresentation presentation;
 
-	public void stop(){
-		running = false;
-	}
-	
 	public void run(){
 		try{
 			init();
@@ -51,15 +45,8 @@ public abstract class Core {
 	
 	public void update(long timePassed){}
 
-
-
 	public void addGameObject(GameObject object){
 		this.newGameObjects.add(object);
-	}
-
-	public void addGameControl(GameControl control){
-		presentation.getWindow().addKeyListener(control);
-		presentation.getWindow().addMouseListener(control);
 	}
 
 	protected void checkForCollisions() {

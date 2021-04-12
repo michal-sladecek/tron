@@ -2,13 +2,10 @@ package tron;
 
 import engine.Coordinates;
 import engine.Core;
-import engine.GameControl;
-import engine.GameObject;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 public class TronGame extends Core {
 
@@ -24,9 +21,9 @@ public class TronGame extends Core {
         addGameObject(p2);
         addGameObject(p3);
 
-        addGameControl(new TronPlayerControl(p1, KeyEvent.VK_UP,KeyEvent.VK_DOWN, KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT));
-        addGameControl(new TronPlayerControl(p2, KeyEvent.VK_W,KeyEvent.VK_S, KeyEvent.VK_D, KeyEvent.VK_A));
-        addGameControl(new TronPlayerControl(p3, MouseEvent.BUTTON1, MouseEvent.BUTTON3));
+        presentation.addGameControl(new TronPlayerControl(p1, KeyEvent.VK_UP,KeyEvent.VK_DOWN, KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT));
+        presentation.addGameControl(new TronPlayerControl(p2, KeyEvent.VK_W,KeyEvent.VK_S, KeyEvent.VK_D, KeyEvent.VK_A));
+        presentation.addGameControl(new TronPlayerControl(p3, MouseEvent.BUTTON1, MouseEvent.BUTTON3));
     }
 
 

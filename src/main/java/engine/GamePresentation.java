@@ -38,6 +38,8 @@ public abstract class GamePresentation {
         sm.update();
     }
 
+
+
     public void restore(){
         sm.restoreScreen();
     }
@@ -49,4 +51,9 @@ public abstract class GamePresentation {
     }
 
     public abstract void draw();
+
+    public void addGameControl(GameControl control){
+        getWindow().addKeyListener(control);
+        getWindow().addMouseListener(control);
+    }
 }

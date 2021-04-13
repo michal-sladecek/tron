@@ -5,18 +5,14 @@ import engine.Direction;
 
 import java.awt.*;
 
-public class SnakeHead extends SnakeSegment {
+public class SnakeHead  {
 
     Direction direction;
 
     public SnakeHead(Coordinates location, Color color) {
-        super(location, color);
-    }
-
-    @Override
-    public void update() {
 
     }
+
 
 
     public void setDirectionUP(){

@@ -1,11 +1,12 @@
 package snake;
 
 import engine.GameControl;
+import engine.KeyboardController;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-public class SnakeController extends GameControl {
+public class SnakeController extends KeyboardController {
 
     SnakeHead head;
     int up,down,right,left;
@@ -41,38 +42,4 @@ public class SnakeController extends GameControl {
 
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-
-    }
 }

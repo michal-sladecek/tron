@@ -1,16 +1,16 @@
 package tron;
 
-import engine.GameControl;
+import engine.MouseController;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-public class TronPlayerMouseControl extends GameControl  {
+public class TronPlayerMouseController extends MouseController {
 
     TronPlayer player;
 
     int rotateLeft, rotateRight;
-    public TronPlayerMouseControl(TronPlayer player, int rotateLeft, int rotateRight) {
+    public TronPlayerMouseController(TronPlayer player, int rotateLeft, int rotateRight) {
         this.player = player;
 
         this.rotateLeft = rotateLeft;
@@ -54,18 +54,4 @@ public class TronPlayerMouseControl extends GameControl  {
     public void mouseMoved(MouseEvent e) {
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
 }

@@ -50,7 +50,6 @@ public abstract class GamePresentation {
     public abstract void draw();
 
     public void addGameControl(GameControl control){
-        sm.getFullScreenWindow().addKeyListener(control);
-        sm.getFullScreenWindow().addMouseListener(control);
+        control.addSelf(sm.getFullScreenWindow());
     }
 }

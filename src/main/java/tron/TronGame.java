@@ -24,7 +24,7 @@ public class TronGame extends Core {
 
         presentation.addGameControl(new TronPlayerKeyboardControl(p1, KeyEvent.VK_UP,KeyEvent.VK_DOWN, KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT));
         presentation.addGameControl(new TronPlayerKeyboardControl(p2, KeyEvent.VK_W,KeyEvent.VK_S, KeyEvent.VK_D, KeyEvent.VK_A));
-        presentation.addGameControl(new TronPlayerMouseControl(p3, MouseEvent.BUTTON1, MouseEvent.BUTTON3));
+        presentation.addGameControl(new TronPlayerMouseController(p3, MouseEvent.BUTTON1, MouseEvent.BUTTON3));
     }
 
 

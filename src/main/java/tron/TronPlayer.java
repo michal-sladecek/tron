@@ -9,6 +9,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class TronPlayer extends GameObject {
+    public static int MOVE_AMOUNT = 5;
     ArrayList<Coordinates> path = new ArrayList<>();
     protected Direction direction;
     private Core game;
@@ -92,7 +93,7 @@ public class TronPlayer extends GameObject {
     @Override
     public void update() {
         game.addGameObject(new TronPlayerPathBlock(new Coordinates(location),color));
-        movePlayer(TronConstants.MOVE_AMOUNT);
+        movePlayer(MOVE_AMOUNT);
         correctOutOfBounds();
     }
 

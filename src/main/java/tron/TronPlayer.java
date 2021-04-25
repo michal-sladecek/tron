@@ -19,6 +19,10 @@ public class TronPlayer extends GameObject {
         this.game = engine;
     }
 
+    private void move(int dx, int dy){
+        this.location = new Coordinates(location.getX()+dx,location.getY()+dy);
+    }
+
     public void correctOutOfBounds() {
         if (location.getY() < 0){
             location.setY(game.getGameHeight());
@@ -37,16 +41,16 @@ public class TronPlayer extends GameObject {
     public void movePlayer(int moveAmount) {
         switch(direction){
             case UP:
-                location.move(0,-moveAmount);
+                move(0,-moveAmount);
                 break;
             case RIGHT:
-                location.move(moveAmount,0);
+                move(moveAmount,0);
                 break;
             case DOWN:
-                location.move(0,moveAmount);
+                move(0,moveAmount);
                 break;
             case LEFT:
-                location.move(-moveAmount,0);
+                move(-moveAmount,0);
                 break;
         }
     }

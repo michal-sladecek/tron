@@ -1,17 +1,14 @@
 package tron;
 
-import engine.Coordinates;
-import engine.Core;
-import engine.Direction;
-import engine.GameObject;
+import engine.*;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-public class TronPlayer extends GameObject {
+public class TronPlayer extends MovableGameObject {
     public static int MOVE_AMOUNT = 5;
     ArrayList<Coordinates> path = new ArrayList<>();
-    protected Direction direction;
+
     private Core game;
 
     public TronPlayer(Coordinates location, Direction direction, Color color, Core engine) {
@@ -63,32 +60,7 @@ public class TronPlayer extends GameObject {
         return false;
     }
 
-    public void setDirectionUP(){
-        if(this.direction != Direction.DOWN)
-            this.direction = Direction.UP;
-    }
-    public void setDirectionDOWN(){
-        if(this.direction != Direction.UP)
-            this.direction = Direction.DOWN;
-    }
-    public void setDirectionRIGHT(){
-        if(this.direction != Direction.LEFT)
-            this.direction = Direction.RIGHT;
-    }
-    public void setDirectionLEFT(){
-        if(this.direction != Direction.RIGHT)
-            this.direction = Direction.LEFT;
-    }
-    public void rotateRight() {
-        this.direction = Direction.valueOf((this.direction.getValue() + 1) % 4);
-    }
-    public void rotateLeft() {
-        if (direction.getValue() == 0) {
-            direction = Direction.valueOf(3);
-        } else {
-            this.direction = Direction.valueOf((this.direction.getValue() - 1) % 4);
-        }
-    }
+
 
     @Override
     public void update() {

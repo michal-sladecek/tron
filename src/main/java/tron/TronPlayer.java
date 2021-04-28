@@ -21,7 +21,7 @@ public class TronPlayer extends MovableGameObject {
     @Override
     public void update() {
         this.core.addGameObject(new TronPlayerPathBlock(new Coordinates(location),color));
-        movePlayer(MOVE_AMOUNT);
+        moveObjectInDirection(MOVE_AMOUNT);
         correctOutOfBounds();
     }
 

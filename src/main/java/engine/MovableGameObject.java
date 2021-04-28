@@ -43,7 +43,7 @@ public abstract class MovableGameObject extends GameObject {
         this.location = new Coordinates(location.getX()+dx,location.getY()+dy);
     }
 
-    public void movePlayer(int moveAmount) {
+    public void moveObjectInDirection(int moveAmount) {
         switch(direction){
             case UP:
                 move(0,-moveAmount);

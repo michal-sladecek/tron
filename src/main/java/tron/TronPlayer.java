@@ -14,10 +14,6 @@ public class TronPlayer extends MovableGameObject {
         this.direction = direction;
     }
 
-    public boolean checkCollision(GameObject other){
-        return other.getLocation().equals(location);
-    }
-
     @Override
     public void update() {
         this.core.addGameObject(new TronPlayerPathBlock(new Coordinates(location),color));

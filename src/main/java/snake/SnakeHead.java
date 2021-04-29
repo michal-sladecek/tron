@@ -2,35 +2,24 @@ package snake;
 
 import engine.Coordinates;
 import engine.Direction;
+import engine.MovableGameObject;
+import tron.TronGame;
+import tron.TronPlayerPathBlock;
 
 import java.awt.*;
 
-public class SnakeHead  {
+public class SnakeHead extends MovableGameObject {
+    public static int MOVE_AMOUNT = 5;
 
-    Direction direction;
-
-    public SnakeHead(Coordinates location, Color color) {
-
+    public SnakeHead(Coordinates location, Direction direction, Color color, SnakeGame core) {
+        super(location, color, core);
+        this.direction = direction;
     }
 
-
-
-    public void setDirectionUP(){
-        if(this.direction != Direction.DOWN)
-            this.direction = Direction.UP;
+    @Override
+    public void update() {
+        //this.core.getGameState().addGameObject(new TronPlayerPathBlock(new Coordinates(location),color));
+        moveObjectInDirection(MOVE_AMOUNT);
+        correctOutOfBounds();
     }
-    public void setDirectionDOWN(){
-        if(this.direction != Direction.UP)
-            this.direction = Direction.DOWN;
-    }
-    public void setDirectionRIGHT(){
-        if(this.direction != Direction.LEFT)
-            this.direction = Direction.RIGHT;
-    }
-    public void setDirectionLEFT(){
-        if(this.direction != Direction.RIGHT)
-            this.direction = Direction.LEFT;
-    }
-
-
 }

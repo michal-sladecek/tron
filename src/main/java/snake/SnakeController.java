@@ -21,6 +21,7 @@ public class SnakeController extends KeyboardController {
 
     @Override
     public void keyTyped(KeyEvent e) {
+        System.out.println(e.getKeyChar());
         if (e.getKeyCode() == this.up) {
             head.setDirectionUP();
         } else if (e.getKeyCode() == this.down) {

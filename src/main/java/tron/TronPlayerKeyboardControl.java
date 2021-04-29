@@ -1,10 +1,7 @@
 package tron;
 
-import engine.GameControl;
 import engine.KeyboardController;
-
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 
 public class TronPlayerKeyboardControl extends KeyboardController {
     TronPlayer player;

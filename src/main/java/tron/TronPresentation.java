@@ -1,6 +1,5 @@
 package tron;
 
-import engine.GameObject;
 import engine.GamePresentation;
 
 import java.awt.*;

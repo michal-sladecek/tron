@@ -3,6 +3,12 @@ package engine;
 import java.util.List;
 
 public abstract class CollisionManager {
+    protected final int playgroundWidth;
+    protected final int playgroundHeight;
+    public CollisionManager(int playgroundWidth, int playgroundHeight) {
+        this.playgroundWidth = playgroundWidth;
+        this.playgroundHeight = playgroundHeight;
+    }
     public void checkForCollisions(List<GameObject> gameObjects) {
         for (GameObject o1: gameObjects) {
             for (GameObject o2: gameObjects) {

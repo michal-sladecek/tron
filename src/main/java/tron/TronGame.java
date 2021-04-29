@@ -12,8 +12,9 @@ public class TronGame extends Core {
 
     public TronGame() {
         super();
-        this.collisionManager = new TronCollisionManager();
         this.presentation = new TronPresentation(this);
+        this.collisionManager = new TronCollisionManager(this.getGameWidth(), this.getGameHeight());
+
         TronPlayer p1 = new TronPlayer(new Coordinates(40,40), Direction.RIGHT, Color.green,this);
         TronPlayer p2 = new TronPlayer(new Coordinates(600,440), Direction.LEFT, Color.red,this);
         TronPlayer p3 = new TronPlayer(new Coordinates(900,500), Direction.UP, Color.yellow,this);

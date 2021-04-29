@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class TronPlayer extends MovableGameObject {
     public static int MOVE_AMOUNT = 5;
-    ArrayList<Coordinates> path = new ArrayList<>();
 
     public TronPlayer(Coordinates location, Direction direction, Color color, Core core) {
         super(location, color, core);

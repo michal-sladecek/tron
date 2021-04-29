@@ -6,6 +6,7 @@ import java.util.List;
 public abstract class Core {
 	protected List<GameObject> gameObjects = new ArrayList<>();
 	protected List<GameObject> newGameObjects = new ArrayList<>();
+	private CollisionManager collisionManager = new CollisionManager();
 
 	private boolean running;
 	protected GamePresentation presentation;
@@ -31,7 +32,7 @@ public abstract class Core {
 
 		while (running){
 			update();
-			checkForCollisions();
+			collisionManager.checkForCollisions(gameObjects);
 			presentation.updatePresentation();
 			try{
 				Thread.sleep(20);
@@ -42,17 +43,6 @@ public abstract class Core {
 
 	public void addGameObject(GameObject object){
 		this.newGameObjects.add(object);
-	}
-
-	protected void checkForCollisions() {
-		for (GameObject o1: gameObjects) {
-			for (GameObject o2: gameObjects) {
-				if(o1 != o2 && o1.checkCollision(o2)){
-					o1.handleCollision(o2);
-
-				}
-			}
-		}
 	}
 
 	protected void update() {

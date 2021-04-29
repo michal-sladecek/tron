@@ -19,10 +19,4 @@ public class TronPlayer extends MovableGameObject {
         moveObjectInDirection(MOVE_AMOUNT);
         correctOutOfBounds();
     }
-
-    @Override
-    public void handleCollision(GameObject object) {
-        System.exit(0);
-    }
-
 }

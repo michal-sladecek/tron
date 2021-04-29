@@ -23,10 +23,5 @@ public abstract class GameObject {
         return color;
     }
 
-    public abstract boolean checkCollision(GameObject other);
-
     public abstract void update();
-
-    public abstract void handleCollision(GameObject object);
-
 }

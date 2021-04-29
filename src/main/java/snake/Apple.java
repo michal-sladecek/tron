@@ -13,17 +13,7 @@ public class Apple extends GameObject {
     }
 
     @Override
-    public boolean checkCollision(GameObject other) {
-        return false;
-    }
-
-    @Override
     public void update() {
-
-    }
-
-    @Override
-    public void handleCollision(GameObject object) {
 
     }
 }

@@ -2,7 +2,7 @@ package engine;
 
 import java.util.List;
 
-public class CollisionManager {
+public abstract class CollisionManager {
     public void checkForCollisions(List<GameObject> gameObjects) {
         for (GameObject o1: gameObjects) {
             for (GameObject o2: gameObjects) {
@@ -17,9 +17,5 @@ public class CollisionManager {
         return gameObject1.getLocation().equals(gameObject2.getLocation());
     }
 
-    public void handleCollision(GameObject gameObject1, GameObject gameObject2)
-    {
-        System.exit(0);
-    }
-
+    public abstract void handleCollision(GameObject gameObject1, GameObject gameObject2);
 }

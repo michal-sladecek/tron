@@ -6,7 +6,7 @@ import java.util.List;
 public abstract class Core {
 	protected List<GameObject> gameObjects = new ArrayList<>();
 	protected List<GameObject> newGameObjects = new ArrayList<>();
-	private CollisionManager collisionManager = new CollisionManager();
+	protected CollisionManager collisionManager;
 
 	private boolean running;
 	protected GamePresentation presentation;

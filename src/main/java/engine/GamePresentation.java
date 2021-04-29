@@ -51,7 +51,7 @@ public abstract class GamePresentation {
 
     protected void drawTemplate(List<GameObject> objects, Color background) {
         Graphics2D g = sm.getGraphics();
-        g.setColor(Color.BLACK);
+        g.setColor(background);
         g.fillRect(0, 0, sm.getWidth(), sm.getHeight());
 
         for (GameObject gameObject: objects) {

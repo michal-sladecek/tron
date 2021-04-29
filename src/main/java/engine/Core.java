@@ -1,10 +1,11 @@
 package engine;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Core {
-	protected ArrayList<GameObject> gameObjects = new ArrayList<>();
-	protected ArrayList<GameObject> newGameObjects = new ArrayList<>();
+	protected List<GameObject> gameObjects = new ArrayList<>();
+	protected List<GameObject> newGameObjects = new ArrayList<>();
 
 	private boolean running;
 	protected GamePresentation presentation;
@@ -18,7 +19,7 @@ public abstract class Core {
 		}
 	}
 
-	public ArrayList<GameObject> getGameObjects() {
+	public List<GameObject> getGameObjects() {
 		return gameObjects;
 	}
 

@@ -1,12 +1,9 @@
 package engine;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class Core {
-	protected List<GameObject> gameObjects = new ArrayList<>();
-	protected List<GameObject> newGameObjects = new ArrayList<>();
+
 	protected CollisionManager collisionManager;
+	protected GameObjectManager gameObjectManager = new GameObjectManager();
 
 	private boolean running;
 	protected GamePresentation presentation;
@@ -20,10 +17,6 @@ public abstract class Core {
 		}
 	}
 
-	public List<GameObject> getGameObjects() {
-		return gameObjects;
-	}
-
 	public void init(){
 		running = true;
 	}
@@ -31,30 +24,18 @@ public abstract class Core {
 	public void gameLoop(){
 
 		while (running){
-			update();
-			collisionManager.checkForCollisions(gameObjects);
+			gameObjectManager.update();
+			collisionManager.checkForCollisions(gameObjectManager.getGameObjects());
 			presentation.updatePresentation();
 			try{
 				Thread.sleep(20);
 			}catch(Exception ex){}
 		}
 	}
-	
 
-	public void addGameObject(GameObject object){
-		this.newGameObjects.add(object);
+	public GameObjectManager getGameState() {
+		return gameObjectManager;
 	}
-
-	protected void update() {
-		for (GameObject gameObject : gameObjects) {
-			gameObject.update();
-		}
-		gameObjects.addAll(newGameObjects);
-		newGameObjects.clear();
-	}
-
-
-
 	public int getGameWidth(){
 		return presentation.getScreenWidth();
 	}

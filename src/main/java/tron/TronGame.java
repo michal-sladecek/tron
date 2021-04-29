@@ -19,17 +19,14 @@ public class TronGame extends Core {
         TronPlayer p3 = new TronPlayer(new Coordinates(900,500), Direction.UP, Color.yellow,this);
 
 
-        addGameObject(p1);
-        addGameObject(p2);
-        addGameObject(p3);
+        gameObjectManager.addGameObject(p1);
+        gameObjectManager.addGameObject(p2);
+        gameObjectManager.addGameObject(p3);
 
         presentation.addGameControl(new TronPlayerKeyboardControl(p1, KeyEvent.VK_UP,KeyEvent.VK_DOWN, KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT));
         presentation.addGameControl(new TronPlayerKeyboardControl(p2, KeyEvent.VK_W,KeyEvent.VK_S, KeyEvent.VK_D, KeyEvent.VK_A));
         presentation.addGameControl(new TronPlayerMouseController(p3, MouseEvent.BUTTON1, MouseEvent.BUTTON3));
     }
-
-
-
 
     public static void main(String[] args) {
         TronGame game = new TronGame();

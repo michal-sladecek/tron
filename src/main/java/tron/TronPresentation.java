@@ -16,6 +16,6 @@ public class TronPresentation extends GamePresentation {
 
     @Override
     public void draw() {
-        this.drawTemplate(game.getGameObjects(), Color.BLACK);
+        this.drawTemplate(game.getGameState().getGameObjects(), Color.BLACK);
     }
 }

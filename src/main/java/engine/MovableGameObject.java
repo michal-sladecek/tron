@@ -74,7 +74,4 @@ public abstract class MovableGameObject extends GameObject {
             location.setX(core.getGameWidth());
         }
     }
-    public boolean checkCollision(GameObject other){
-        return other.getLocation().equals(location);
-    }
 }
